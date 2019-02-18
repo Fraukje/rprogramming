@@ -1,4 +1,4 @@
-pollutantmean_test <- function(source, pollutantname, ids) 
+pollutantmean <- function(source, pollutantname, ids) 
 ##   INPUT
   ## source         = string with data source where files can be found
   ## pollutantname  = string with either 'nitrate' or 'sulfate'
