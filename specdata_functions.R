@@ -65,3 +65,35 @@ complete <- function(directory, ids)
         ## Return output
         output
 }
+
+corr <- function(directory, threshold = 0)
+  ##   INPUT
+  ## directory      = string with data source where files can be found
+  ## threshold      = number of complete cases a location must have to be    ##                  included
+  
+  ##   DESCRIPTION
+  ## Function goed through all files within the directory and finds those    ## locations that meet the threshold, and for these the correlation        ## between sulfate and nitrate levels is calculated.
+  
+  ##   OUTPUT
+  ## Numberic vector of correlations
+  
+  ##   Created 04-03-2019 by Fraukje Coopmans
+{
+  monitor_cor <- vector()
+  
+  all_files = list.files(directory)
+  ## For each file in the directory
+  for (i in all_files) {
+    # Read file and find number of complete cases
+    data <- read.csv(file.path(directory, i))
+    completes_vector <- complete.cases(data)
+    
+    ## If the threshold is met, calculate correlation
+    if (sum(completes_vector) >= threshold) {
+      monitor_cor <- c(monitor_cor, cor(data$nitrate[completes_vector], data$sulfate[completes_vector]))
+    }
+  }
+  
+  ## Return output
+  monitor_cor
+}
