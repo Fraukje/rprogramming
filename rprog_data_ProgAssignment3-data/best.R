@@ -15,7 +15,9 @@ best <- function(state, outcome) {
   
   ## Select the right data
   datasource <- datasource[datasource$State == state,] #Drop any out-of-state data
-  datasource[, mortality_indexes[mortality_types == outcome]] <- as.numeric(datasource[, mortality_indexes[mortality_types == outcome]]) #Select the mortality type
+  datasource[, mortality_indexes[mortality_types == outcome]] <- 
+    suppressWarnings(as.numeric(datasource[, mortality_indexes[mortality_types == outcome]])) 
+    #Select the mortality type. Suppress warnings for trying to convert NA values.
   
   ## Perform calculations
   min_vals <- min(datasource[, mortality_indexes[mortality_types == outcome]], na.rm = TRUE) #Find min value(s)
