@@ -130,4 +130,4 @@ This week covers how to simulate data in R, which serves as the basis for doing 
     Reading: Post-Course Survey
 
 Graded: Week 4 Quiz
-Graded: Programming Assignment 3: Quiz
+Graded: Programming Assignment 3: Quiz.
